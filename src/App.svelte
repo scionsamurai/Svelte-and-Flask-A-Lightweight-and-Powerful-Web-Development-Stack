@@ -1,30 +1,43 @@
 <script>
-	export let name;
+	
+	let pages = {
+		"index": "",
+		"create": "",
+		"login": "",
+		"signup": "",
+	}
+	
+	export let page;
+	export let extraData;
+
+	switch (page) {
+		case 'index':
+			import('./pages/index.svelte')
+			.then(module => module.default)
+			.then(Foo => pages[page] = Foo)
+			.catch(err => console.error(err));
+			break;
+		case 'create':
+			import('./pages/create.svelte')
+			.then(module => module.default)
+			.then(Foo => pages[page] = Foo)
+			.catch(err => console.error(err));
+			break;
+		case 'login':
+			import('./pages/login.svelte')
+			.then(module => module.default)
+			.then(Foo => pages[page] = Foo)
+			.catch(err => console.error(err));
+			break
+		case 'signup':
+			import('./pages/signup.svelte')
+			.then(module => module.default)
+			.then(Foo => pages[page] = Foo)
+			.catch(err => console.error(err));
+			break;
+		}
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<svelte:component this={pages[page]} {extraData} />
 </main>
-
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
