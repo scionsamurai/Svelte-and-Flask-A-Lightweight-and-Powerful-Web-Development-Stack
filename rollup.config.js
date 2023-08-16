@@ -5,6 +5,7 @@ import livereload from 'rollup-plugin-livereload';
 import terser from '@rollup/plugin-terser';
 import css from 'rollup-plugin-css-only';
 import sveltePreprocess from 'svelte-preprocess';
+import del from 'rollup-plugin-delete';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -38,6 +39,7 @@ export default {
 		dir: 'flask/static/resources/'
 	},
 	plugins: [
+		del({ targets: 'flask/static/resources/*' }),
 		svelte({
 			compilerOptions: {
 				// enable run-time checks when not in production
